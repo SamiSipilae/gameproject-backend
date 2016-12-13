@@ -1,7 +1,5 @@
 package com.gameproject.responses;
 
-import java.util.List;
-
 import com.gameproject.level.Level;
 
 public class GetLevelResponse {

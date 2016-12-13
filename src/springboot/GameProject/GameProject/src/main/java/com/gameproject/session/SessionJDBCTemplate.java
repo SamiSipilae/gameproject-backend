@@ -5,10 +5,6 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.gameproject.user.User;
-import com.gameproject.user.UserDAO;
-import com.gameproject.user.UserMapper;
-
 public class SessionJDBCTemplate implements SessionDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;

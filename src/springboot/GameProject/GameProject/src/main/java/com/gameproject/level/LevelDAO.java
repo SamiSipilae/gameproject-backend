@@ -1,11 +1,7 @@
 package com.gameproject.level;
 
-import java.sql.Timestamp;
 import java.util.List;
 import javax.sql.DataSource;
-
-import com.gameproject.session.Session;
-import com.gameproject.user.User;
 
 public interface LevelDAO {
 

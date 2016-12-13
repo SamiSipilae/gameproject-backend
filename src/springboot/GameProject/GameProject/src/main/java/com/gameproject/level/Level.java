@@ -1,7 +1,5 @@
 package com.gameproject.level;
 
-import java.sql.Timestamp;
-
 public class Level {
 
 	private int levelid;

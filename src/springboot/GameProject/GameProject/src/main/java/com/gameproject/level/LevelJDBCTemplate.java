@@ -1,16 +1,8 @@
 package com.gameproject.level;
 
-import java.sql.Timestamp;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.gameproject.session.Session;
-import com.gameproject.session.SessionDAO;
-import com.gameproject.session.SessionMapper;
-import com.gameproject.user.User;
-import com.gameproject.user.UserDAO;
-import com.gameproject.user.UserMapper;
 
 public class LevelJDBCTemplate implements LevelDAO {
 	private DataSource dataSource;

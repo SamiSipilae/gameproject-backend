@@ -29,4 +29,6 @@ public class GameProjectRequestTest {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/ajax/",
                 String.class)).contains("Levels");
     }
+    
+    // TODO: add rest of the tests
 }

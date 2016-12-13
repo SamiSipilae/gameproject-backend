@@ -4,8 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import javax.sql.DataSource;
 
-import com.gameproject.user.User;
-
 public interface SessionDAO {
 
 	public void setDataSource(DataSource ds);
