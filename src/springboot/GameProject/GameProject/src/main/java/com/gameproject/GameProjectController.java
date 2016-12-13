@@ -70,14 +70,17 @@ public class GameProjectController {
 		@RequestMapping(value = "/ajax/levels", method = RequestMethod.PUT)
 		public @ResponseBody CreateLevelResponse createlevel(@RequestBody LevelJSON level){
 			//  create new level, requires valid session
+			// expects String name, String session, String data 
 			String status = "fail";
 			if(sessionJDBCTemplate.checkIfSessionIsValid(level.getSession()))
 			{
+				// session exists and is recent enough
 				System.out.println(level.getData());
 				levelJDBCTemplate.create(level);
 				status  = "success";
 			}
 			return new CreateLevelResponse(status);
+			// return is simply status of the operation
 		}
 		
 		
@@ -92,7 +95,7 @@ public class GameProjectController {
 	
 		@RequestMapping(value = "/ajax/users/id={id}")
 		public GetUserResponse getuser(@PathVariable("id") int id) {
-
+			// return user based on id 
 			User usr = userJDBCTemplate.getUser(id);
 			String name = usr.getName();
 			return new GetUserResponse(id, name);
@@ -100,12 +103,16 @@ public class GameProjectController {
 		
 		@RequestMapping(value = "/ajax/users", method = RequestMethod.PUT)
 		public @ResponseBody CreateUserResponse createuser(@RequestBody User user){
+			// register new user
+			// expects String name, String password
 			String status = "success";
 			if (userJDBCTemplate.checkIfNameExists(user.getName()))
 				status = "username taken";
+				// user name already existss
 			else {
 				String pw_hash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
 				userJDBCTemplate.create(user.getName(), pw_hash);
+				// hash the password and register user
 			}
 			return new CreateUserResponse(status);
 		}
@@ -122,20 +129,27 @@ public class GameProjectController {
 		
 		@RequestMapping(value = "/ajax/sessions", method = RequestMethod.POST)
 		public LoginResponse login(@RequestBody User user) {
+			// login user
+			// creates a session for user 
+			// expects String name, String password
 			String session = "fail";
 			if (userJDBCTemplate.checkIfNameExists(user.getName()))
 			{
+				// username exists
 				User usr = userJDBCTemplate.getUserByName(user.getName());
 				if (BCrypt.checkpw(user.getPassword(), usr.getPassword())) 
 				{
+					// password is correct
 					if(sessionJDBCTemplate.checkIfSessionExists(usr.getId()))
 						sessionJDBCTemplate.delete(usr.getId());
 					
 					session = java.util.UUID.randomUUID().toString();
 					sessionJDBCTemplate.create(session, usr.getId(), new Timestamp(System.currentTimeMillis()));
+					// generate session id
 		
 				}
 			}
+			// returns either sessionid or error message
 			return new LoginResponse(session);
 		}
 		

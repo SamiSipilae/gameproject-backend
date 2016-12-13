@@ -1,5 +1,7 @@
 package com.gameproject.level;
 
+
+// this is used to store Json object for creating level because we need the session id for user 
 public class LevelJSON {
 	
 		private String session;
