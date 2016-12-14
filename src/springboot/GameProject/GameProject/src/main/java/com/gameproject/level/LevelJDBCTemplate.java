@@ -14,19 +14,19 @@ public class LevelJDBCTemplate implements LevelDAO {
 	}
 
 	public void create(Level level) {
-		String SQL = "insert into Levels (name, data) values (?, ?)";
+		String SQL = "insert into levels (name, data) values (?, ?)";
 		jdbcTemplateObject.update(SQL, level.getName(), level.getLevelData());
 		return;
 	}
 	public void create(LevelJSON level) {
-		String SQL = "insert into Levels (name, data) values (?, ?)";
+		String SQL = "insert into levels (name, data) values (?, ?)";
 		jdbcTemplateObject.update(SQL, level.getName(), level.getData());
 		return;
 	}
 
 
 	public Level getLevel(int levelid) {
-		String SQL = "select * from Levels where levelid = ?";
+		String SQL = "select * from levels where levelid = ?";
 		Level level = jdbcTemplateObject.queryForObject(SQL, new Object[] { levelid }, new LevelMapper());
 		return level;
 	}
@@ -39,19 +39,19 @@ public class LevelJDBCTemplate implements LevelDAO {
 	}
 	
 	public List<Level> listLevels() {
-		String SQL = "select * from Levels";
+		String SQL = "select * from levels";
 		List<Level> levels = jdbcTemplateObject.query(SQL, new LevelMapper());
 		return levels;
 	}
 
 	public void delete(Integer levelid) {
-		String SQL = "delete from Levels where levelid = ?";
+		String SQL = "delete from levels where levelid = ?";
 		jdbcTemplateObject.update(SQL, levelid);
 		return;
 	}
 
 	public void updateTopTime(Integer levelid, float time, int userid){
-		String SQL = "update Levels set toptime = ?,topuser = ? where levelid = ?";
+		String SQL = "update levels set toptime = ?,topuser = ? where levelid = ?";
 		jdbcTemplateObject.update(SQL, time, userid, levelid);
 		return;
 	}

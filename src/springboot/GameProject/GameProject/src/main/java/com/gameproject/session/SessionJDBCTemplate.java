@@ -16,7 +16,7 @@ public class SessionJDBCTemplate implements SessionDAO {
 	}
 
 	public void create(String sessionid, int userid, Timestamp timestamp) {
-		String SQL = "insert into Sessions (sessionid, userid, lastupdate) values (?, ?, ?)";
+		String SQL = "insert into sessions (sessionid, userid, lastupdate) values (?, ?, ?)";
 		jdbcTemplateObject.update(SQL, sessionid, userid, timestamp);
 		return;
 	}
@@ -51,36 +51,36 @@ public class SessionJDBCTemplate implements SessionDAO {
 	}
 
 	public Session getSessionBySessionId(String sessionid) {
-		String SQL = "select * from Sessions where sessionid = ?";
+		String SQL = "select * from sessions where sessionid = ?";
 		Session session = jdbcTemplateObject.queryForObject(SQL, new Object[] { sessionid }, new SessionMapper());
 		return session;
 	}
 
 	public Session getSessionByUserId(int userid) {
-		String SQL = "select * from Sessions where userid = ?";
+		String SQL = "select * from sessions where userid = ?";
 		Session session = jdbcTemplateObject.queryForObject(SQL, new Object[] { userid }, new SessionMapper());
 		return session;
 	}
 
 	public List<Session> listSessions() {
-		String SQL = "select * from Sessions";
+		String SQL = "select * from sessions";
 		List<Session> session = jdbcTemplateObject.query(SQL, new SessionMapper());
 		return session;
 	}
 
 	public void delete(Integer userid) {
-		String SQL = "delete from Sessions where userid = ?";
+		String SQL = "delete from sessions where userid = ?";
 		jdbcTemplateObject.update(SQL, userid);
 		return;
 	}
 	public void delete(String sessionid) {
-		String SQL = "delete from Sessions where sessionid = ?";
+		String SQL = "delete from sessions where sessionid = ?";
 		jdbcTemplateObject.update(SQL, sessionid);
 		return;
 	}
 
 	public void update(Integer userid, Timestamp timestamp) {
-		String SQL = "update Sessions set lastupdate = ? where userid = ?";
+		String SQL = "update sessions set lastupdate = ? where userid = ?";
 		jdbcTemplateObject.update(SQL, timestamp, userid);
 		return;
 	}
