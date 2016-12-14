@@ -33,7 +33,7 @@ public class LevelJDBCTemplate implements LevelDAO {
 
 
 	public Level getLevel(String name) {
-		String SQL = "select * from Levels where name = ?";
+		String SQL = "select * from levels where name = ?";
 		Level level = jdbcTemplateObject.queryForObject(SQL, new Object[] { name }, new LevelMapper());
 		return level;
 	}
