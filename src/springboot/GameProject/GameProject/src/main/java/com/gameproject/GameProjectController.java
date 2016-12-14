@@ -101,15 +101,20 @@ public class GameProjectController {
 		public @ResponseBody CreateUserResponse createuser(@RequestBody User user){
 			// register new user
 			// expects String name, String password
-			String status = "success";
+			if(user.getName() == null || user.getPassword() == null)
+			{
+				return new CreateUserResponse("Missing data");
+			}
+			String status = "Success";
 			if (userJDBCTemplate.checkIfNameExists(user.getName()))
-				status = "username taken";
+				status = "Username taken";
 				// user name already existss
 			else {
 				String pw_hash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
 				userJDBCTemplate.create(user.getName(), pw_hash);
 				// hash the password and register user
 			}
+			
 			return new CreateUserResponse(status);
 		}
 
