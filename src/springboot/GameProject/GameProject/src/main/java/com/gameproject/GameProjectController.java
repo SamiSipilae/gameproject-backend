@@ -74,6 +74,7 @@ public class GameProjectController {
 				System.out.println(level.getData());
 				levelJDBCTemplate.create(level);
 				status  = "success";
+				sessionJDBCTemplate.refresh(level.getSession());
 			}
 			return new CreateLevelResponse(status);
 			// return is simply status of the operation

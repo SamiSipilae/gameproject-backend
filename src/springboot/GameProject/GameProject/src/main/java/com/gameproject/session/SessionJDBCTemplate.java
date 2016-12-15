@@ -84,5 +84,10 @@ public class SessionJDBCTemplate implements SessionDAO {
 		jdbcTemplateObject.update(SQL, timestamp, userid);
 		return;
 	}
+	public void refresh(String sessionid) {
+		String SQL = "update sessions set lastupdate = ? where sessionid = ?";
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		jdbcTemplateObject.update(SQL, timestamp, sessionid);
+		return;
 
 }
