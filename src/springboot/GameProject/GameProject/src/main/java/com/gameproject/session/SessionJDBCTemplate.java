@@ -89,5 +89,6 @@ public class SessionJDBCTemplate implements SessionDAO {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		jdbcTemplateObject.update(SQL, timestamp, sessionid);
 		return;
+	}
 
 }

@@ -21,7 +21,7 @@ public interface SessionDAO {
 
 	public void delete(Integer userid);
 	public void delete(String sessionid);
-
+	public void refresh(String sessionid);
 	public void update(Integer userid, Timestamp timestamp);
 
 }
